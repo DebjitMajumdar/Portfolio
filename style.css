@@ -893,6 +893,33 @@ footer {
     }
 }
 
+/* Deep Parallax Orbs */
+.parallax-orb {
+    position: fixed; /* Fixed to viewport so they're always visible */
+    border-radius: 50%;
+    filter: blur(100px);
+    z-index: 0; /* In front of canvas (-2) and body grid */
+    pointer-events: none;
+    will-change: transform;
+    opacity: 0.5;
+    mix-blend-mode: screen; /* Additive blending so they glow on black */
+}
+.orb-cyan {
+    top: 0%; left: -150px;
+    width: 600px; height: 600px;
+    background: var(--accent-blue);
+}
+.orb-magenta {
+    top: 40%; right: -150px;
+    width: 700px; height: 700px;
+    background: var(--accent-violet);
+}
+.orb-violet {
+    top: 80%; left: 20%;
+    width: 500px; height: 500px;
+    background: #7c3aed;
+}
+
 /* =========================================
    CYBER-KINETIC EXTRAS
    ========================================= */

@@ -414,18 +414,43 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* =========================================
-       MAXIMUM OVERDRIVE: KINETIC PARALLAX
+       KINETIC & VERTICAL PARALLAX ENGINE
        ========================================= */
     const kText1 = document.getElementById('k-text-1');
     const kText2 = document.getElementById('k-text-2');
     
+    // Deep Parallax Engine Targets
+    const parallaxOrbs = document.querySelectorAll('.parallax-orb');
+    const heroImage = document.querySelector('.floating-img');
+    const glassCards = document.querySelectorAll('.project-card, .skill-category, .edu-card');
+
     window.addEventListener('scroll', () => {
-        const scrolled = window.scrollY;
-        // Translate massive text horizontally based on scroll depth
-        if (kText1 && kText2) {
-            kText1.style.transform = `translateX(-${scrolled * 0.15}px)`;
-            kText2.style.transform = `translateX(${scrolled * 0.15}px)`;
-        }
+        window.requestAnimationFrame(() => {
+            const scrolled = window.scrollY;
+            
+            // 1. Horizontal kinetic background text
+            if (kText1 && kText2) {
+                kText1.style.transform = `translateX(-${scrolled * 0.15}px)`;
+                kText2.style.transform = `translateX(${scrolled * 0.15}px)`;
+            }
+
+            // 2. Vertical orb parallax — offset each orb based on its data-speed
+            parallaxOrbs.forEach(orb => {
+                const speed = parseFloat(orb.getAttribute('data-speed')) || 0;
+                orb.style.transform = `translateY(${scrolled * speed * 2}px)`;
+            });
+
+            // 3. Hero image floats up slower than text (Apple-style depth)
+            if (heroImage) {
+                heroImage.style.transform = `translateY(${scrolled * -0.25}px)`;
+            }
+
+            // 4. Asymmetric card stagger — even cards slide faster, odd cards slower
+            glassCards.forEach((card, index) => {
+                const speed = (index % 2 === 0) ? -0.12 : -0.04;
+                card.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
     });
 
 });
