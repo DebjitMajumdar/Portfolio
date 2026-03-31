@@ -12,6 +12,13 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="dark-theme">
+    <div id="bootloader">
+        <div class="terminal-container">
+            <span id="terminal-text"></span><span class="cursor-blink">_</span>
+        </div>
+    </div>
+    <div class="cursor"></div>
+    <canvas id="bg-canvas"></canvas>
     <!-- Navbar -->
     <nav id="navbar">
         <div class="nav-container">
@@ -23,6 +30,7 @@
                 <a href="#experience">Experience</a>
                 <a href="#projects">Projects</a>
                 <a href="#contact">Contact</a>
+                <button id="sfx-toggle" class="sfx-btn" aria-label="Toggle SFX"><i class="fas fa-volume-mute"></i></button>
             </div>
             <div class="hamburger">
                 <i class="fas fa-bars"></i>
@@ -31,12 +39,16 @@
     </nav>
 
     <main>
+        <div class="kinetic-container">
+            <h1 class="kinetic-text" id="k-text-1">ROBOTICS / HARDWARE / IOT / ARTIFICIAL INTELLIGENCE / ROBOTICS / HARDWARE / IOT /</h1>
+            <h1 class="kinetic-text kinetic-text-reverse" id="k-text-2">SOFTWARE ENGINEER / CREATIVE DEVELOPER / COMMUNITY LEADER / SOFTWARE ENGINEER /</h1>
+        </div>
         <!-- Hero Section -->
         <section id="hero" class="section hero">
             <div class="container hero-content">
                 <div class="hero-text animate-on-load">
                     <p class="greeting">Hi there, I'm</p>
-                    <h1 class="name">Debjit <span>Majumdar</span></h1>
+                    <h1 class="name glitch" data-text="Debjit Majumdar">Debjit <span>Majumdar</span></h1>
                     <h2 class="title">BTech CSE @ KIIT</h2>
                     <p class="subtitle">A dynamic community leader and developer with hands-on experience in AI, Robotics, and building corporate relations in the tech ecosystem.</p>
                     <div class="hero-btns">
@@ -305,6 +317,7 @@
         </div>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

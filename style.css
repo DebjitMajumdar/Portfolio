@@ -811,8 +811,190 @@ footer {
 }
 
 /* =========================================
+   MAXIMUM OVERDRIVE / CRAZY ELEMENTS
+   ========================================= */
+
+/* Bootloader Terminal */
+#bootloader {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background-color: #000;
+    z-index: 10000;
+    display: flex;
+    align-items: flex-end; /* Text flows upwards like a real terminal */
+    justify-content: flex-start;
+    padding: 2rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.2rem;
+    color: #0f0;
+    transition: opacity 1s ease-out;
+}
+#bootloader.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+.cursor-blink {
+    animation: blink 1s step-end infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+/* SFX Toggle */
+.sfx-btn {
+    background: transparent;
+    border: 1px solid var(--accent-violet);
+    color: var(--accent-violet);
+    width: 38px; height: 38px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+    margin-left: 1rem;
+    outline: none;
+}
+.sfx-btn:hover, .sfx-btn.sfx-on {
+    background: var(--accent-violet);
+    color: #fff;
+    box-shadow: 0 0 10px var(--accent-violet);
+}
+
+/* Kinetic Parallax Typography */
+.kinetic-container {
+    position: absolute;
+    top: 15vh;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    z-index: -1; 
+    pointer-events: none;
+    opacity: 0.04;
+}
+.kinetic-text {
+    font-size: 8rem;
+    font-weight: 800;
+    white-space: nowrap;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 2px var(--accent-blue);
+    margin: 0;
+    line-height: 1;
+    transform: translateX(0);
+    will-change: transform;
+}
+.kinetic-text-reverse {
+    -webkit-text-stroke: 2px var(--accent-violet);
+}
+@media(max-width: 768px){
+    .kinetic-text {
+        font-size: 4rem;
+        -webkit-text-stroke: 1px var(--accent-blue);
+    }
+}
+
+/* =========================================
+   CYBER-KINETIC EXTRAS
+   ========================================= */
+
+/* Cursor */
+@media (pointer: fine) {
+    body.custom-cursor a, body.custom-cursor button, body.custom-cursor .btn {
+        cursor: none;
+    }
+    body.custom-cursor {
+        cursor: none;
+    }
+}
+.cursor {
+    position: fixed;
+    top: 0; left: 0;
+    width: 32px; height: 32px;
+    border: 2px solid var(--accent-blue);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s, background-color 0.3s;
+    mix-blend-mode: difference;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    display: none; /* hidden on mobile, JS will show it */
+}
+.cursor.hovered {
+    width: 60px; height: 60px;
+    background-color: var(--text-primary);
+    border-color: transparent;
+}
+
+/* Canvas Background */
+#bg-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    z-index: -2;
+    pointer-events: none;
+    background: transparent;
+}
+
+/* Glitch Typography */
+.glitch {
+    position: relative;
+    display: inline-block;
+}
+.glitch::before, .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+}
+.glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 var(--accent-blue);
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim 4s infinite linear alternate-reverse;
+}
+.glitch::after {
+    left: -2px;
+    text-shadow: -2px 0 var(--accent-violet);
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim2 3.5s infinite linear alternate-reverse;
+}
+
+/* =========================================
    ANIMATIONS & RESPONSIVE
    ========================================= */
+@keyframes glitch-anim {
+    0% { clip: rect(42px, 9999px, 44px, 0); }
+    5% { clip: rect(12px, 9999px, 59px, 0); }
+    10% { clip: rect(48px, 9999px, 29px, 0); }
+    15% { clip: rect(100px, 9999px, 100px, 0); }
+    20% { clip: rect(63px, 9999px, 27px, 0); transform: translate(2px, 0); }
+    25% { clip: rect(34px, 9999px, 50px, 0); transform: translate(-2px, 0); }
+    30% { clip: rect(86px, 9999px, 24px, 0); transform: translate(2px, 0); }
+    35% { clip: rect(30px, 9999px, 30px, 0); }
+    40% { clip: rect(60px, 9999px, 60px, 0); }
+    45% { clip: rect(0, 9999px, 0, 0); transform: translate(0, 0); }
+    100% { clip: rect(0, 9999px, 0, 0); }
+}
+
+@keyframes glitch-anim2 {
+    0% { clip: rect(65px, 9999px, 100px, 0); }
+    5% { clip: rect(52px, 9999px, 74px, 0); }
+    10% { clip: rect(79px, 9999px, 85px, 0); }
+    15% { clip: rect(75px, 9999px, 5px, 0); }
+    20% { clip: rect(67px, 9999px, 61px, 0); transform: translate(-2px, 0); }
+    25% { clip: rect(14px, 9999px, 79px, 0); transform: translate(2px, 0); }
+    30% { clip: rect(1px, 9999px, 48px, 0); transform: translate(-2px, 0); }
+    35% { clip: rect(50px, 9999px, 50px, 0); }
+    40% { clip: rect(40px, 9999px, 40px, 0); }
+    45% { clip: rect(0, 9999px, 0, 0); transform: translate(0, 0); }
+    100% { clip: rect(0, 9999px, 0, 0); }
+}
+
 @keyframes float {
     0% { transform: translateY(0px) rotate(0deg); }
     50% { transform: translateY(-15px) rotate(2deg); }
